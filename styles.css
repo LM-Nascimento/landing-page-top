@@ -64,6 +64,20 @@ button{
     background-color: #3882F6;
     border-radius: 7px;
 }
+.play{
+    color: #F9FAF8;
+    font-size: 36px;
+    font-weight: 900;
+    width: 200px;
+    padding: 7px;
+    border-style: none;
+    background-color: #13d14c;
+    border-radius: 7px;
+    margin: 20px;
+}
+.play:hover{
+    outline: 5px solid #13d14c;
+}
 .information{
     text-align: center;
     color: #1F2937;
@@ -84,8 +98,22 @@ button{
 .image-with-subtext img{
     width: 150px;
     height: 150px;
-    border: 4px solid #3882F6;
+    outline: 4px solid #3882F6;
     border-radius: 20px;
+    margin: 10px;
+}
+.rps-result{
+    text-align: center;
+}
+.rps-result img{
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.image-with-subtext img:hover{
+    outline: 10px solid #3882F6;
 }
 .quote{
     background-color: #E5E7EB;

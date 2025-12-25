@@ -71,9 +71,9 @@ function logResults(computerChoice, humanChoice, message){
     console.log("Computer: " + computerScore + " You: " + humanScore)
 }
 
-while (computerScore+humanScore < 5){
-    const humanChoice = getHumanChoice()
-    const computerChoice = getComputerChoice()
-    const message = updateScore(computerChoice, humanChoice)
-    logResults(computerChoice, humanChoice, message)
-}
+//while (computerScore+humanScore < 5){
+//    const humanChoice = getHumanChoice()
+//    const computerChoice = getComputerChoice()
+//    const message = updateScore(computerChoice, humanChoice)
+//    logResults(computerChoice, humanChoice, message)
+//}
