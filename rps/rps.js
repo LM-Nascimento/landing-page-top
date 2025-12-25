@@ -1,16 +1,17 @@
 let computerScore = 0
 let humanScore = 0
+let humanChoice = ""
 
 function getComputerChoice(){
     const chance = Math.random()
     if(chance<1/3){
-        return "R"
+        return "Rock"
     }
     else if(chance<2/3){
-        return "P"
+        return "Paper"
     }
     else{
-        return "S"
+        return "Scissors"
     }
 }
 
@@ -20,15 +21,12 @@ function getHumanChoice(){
 }
 
 function updateScore(computerChoice, humanChoice){
-    //0 for ties
-    // 1 for human win
-    //-1 for comuter win
-    if(computerChoice=="R"){
-        if(humanChoice == "S"){
+    if(computerChoice=="Rock"){
+        if(humanChoice == "Scissors"){
             computerScore += 1
             return "The computer won!"
         }
-        else if(humanChoice == "P"){
+        else if(humanChoice == "Paper"){
             humanScore += 1
             return "You won!"
         }
@@ -36,12 +34,12 @@ function updateScore(computerChoice, humanChoice){
             return "It was a tie!"
         }
     }
-    else if(computerChoice=="P"){
-        if(humanChoice == "R"){
+    else if(computerChoice=="Paper"){
+        if(humanChoice == "Rock"){
             computerScore += 1
             return "The computer won!"
         }
-        else if(humanChoice == "S"){
+        else if(humanChoice == "Scissors"){
             humanScore += 1
             return "You won!"
         }
@@ -49,12 +47,12 @@ function updateScore(computerChoice, humanChoice){
             return "It was a tie!"
         }
     }
-    else{//computerChoice == S
-        if(humanChoice == "P"){
+    else{//computerChoice == "Scissors"
+        if(humanChoice == "Paper"){
             computerScore += 1
             return "The computer won!"
         }
-        else if(humanChoice == "R"){
+        else if(humanChoice == "Rock"){
             humanScore += 1
             return "You won!"
         }
@@ -77,3 +75,62 @@ function logResults(computerChoice, humanChoice, message){
 //    const message = updateScore(computerChoice, humanChoice)
 //    logResults(computerChoice, humanChoice, message)
 //}
+// interaction with the ui
+ const rockImage = document.getElementById("rock-img")
+ const paperImage = document.getElementById("paper-img")
+ const scissorsImage = document.getElementById("scissor-img")
+ const playButton = document.getElementById("play")
+ const computerResultImage = document.getElementById("computer-result")
+ const computerResultParagraph = document.getElementById("computer-result-text")
+ const humanResultImage = document.getElementById("human-result")
+ const humanResultParagraph = document.getElementById("human-result-text")
+ const scoreHeader = document.getElementById("score")
+ const winnerHeader = document.getElementById("winner")
+
+ function setHumanChoice(event){
+    targetId = event.target.id
+    rockImage.style.outlineColor = ""
+    paperImage.style.outlineColor = ""
+    scissorsImage.style.outlineColor = ""
+    if(targetId=="rock-img"){
+        humanChoice = "Rock"
+        rockImage.style.outlineColor = "#13d14c"
+    }
+    else if(targetId=="paper-img"){
+        humanChoice = "Paper"
+        paperImage.style.outlineColor = "#13d14c"
+    }
+    else{
+        humanChoice = "Scissors"
+        scissorsImage.style.outlineColor = "#13d14c"
+    }
+    playRound()
+ }
+ function getImageSource(choice){
+    if(choice == "Rock"){return "images/rock.png"}
+    else if(choice == "Paper"){return "images/paper.png"}
+    else{return "images/scissor.png"}
+ }
+
+ function playRound(){
+    if(humanChoice == ""){
+        alert("you must select rock paper or scissors")
+    }
+    else{
+        const computerChoice = getComputerChoice()
+        const message = updateScore(computerChoice, humanChoice)
+        computerResultImage.src = getImageSource(computerChoice)
+        computerResultParagraph.innerText = "The computer chose " + computerChoice + "!"
+        humanResultImage.src = getImageSource(humanChoice)
+        humanResultParagraph.innerText = "You chose " + humanChoice + "!"
+        scoreHeader.innerText = "Computer: " + computerScore + " You: " + humanScore
+        winnerHeader.innerText = message
+    }
+ }
+
+
+ rockImage.addEventListener("click", setHumanChoice)
+ paperImage.addEventListener("click", setHumanChoice)
+ scissorsImage.addEventListener("click", setHumanChoice)
+ playButton.addEventListener("click", playRound)
+

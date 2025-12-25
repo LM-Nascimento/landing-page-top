@@ -64,7 +64,7 @@ button{
     background-color: #3882F6;
     border-radius: 7px;
 }
-.play{
+#play{
     color: #F9FAF8;
     font-size: 36px;
     font-weight: 900;
@@ -75,7 +75,7 @@ button{
     border-radius: 7px;
     margin: 20px;
 }
-.play:hover{
+#play:hover{
     outline: 5px solid #13d14c;
 }
 .information{
